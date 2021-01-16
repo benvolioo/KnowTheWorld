@@ -55,6 +55,8 @@ public class QuizActivity extends AppCompatActivity {
 
         onclickAnswer = (View v) -> showAnswer();
 
+        // Look to see if these answer#.method() calls can be standardized somehow... perhaps by passing a method to some function which
+        // then calls it on all three
         answer1.setOnClickListener(onclickAnswer);
         answer2.setOnClickListener(onclickAnswer);
         answer3.setOnClickListener(onclickAnswer);

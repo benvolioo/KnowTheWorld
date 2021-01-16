@@ -5,7 +5,7 @@ import com.benvolioo.knowtheworld.QuizActivity.*;
 import android.os.Bundle;
 
 public class Answer extends AppCompatActivity {
-    private int progbarMax = QuizActivity.questionCountTotal;
+    private int pbMax = QuizActivity.questionCountTotal;
 
 
     @Override
