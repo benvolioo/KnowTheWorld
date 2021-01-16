@@ -21,9 +21,9 @@ public class QuizActivity extends AppCompatActivity {
     private Button answer2;
     private Button answer3;
 
-    private int questionCounter = 0;
-    private int questionCountTotal;
-    private Question currentQuestion;
+    public int questionCounter = 0;
+    public static int questionCountTotal;
+    public Question currentQuestion;
 
     private int score;
 
@@ -47,13 +47,24 @@ public class QuizActivity extends AppCompatActivity {
         questionCountTotal = questionList.size();
         Collections.shuffle(questionList);
 
-        // TODO: need to add setOnClickListener for the three buttons which then checkAnswer
 
         checkAnswer();
         showNextQuestion();
 
+        View.OnClickListener onclickAnswer;
+
+        onclickAnswer = (View v) -> showAnswer();
+
+        answer1.setOnClickListener(onclickAnswer);
+        answer2.setOnClickListener(onclickAnswer);
+        answer3.setOnClickListener(onclickAnswer);
+
     }
 
+    private void showAnswer() {
+        Intent intent = new Intent(QuizActivity.this, Answer.class);
+        startActivity(intent);
+    }
 
 
     private void showNextQuestion() {
