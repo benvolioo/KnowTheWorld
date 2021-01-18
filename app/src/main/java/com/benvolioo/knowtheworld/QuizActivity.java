@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,7 +24,7 @@ public class QuizActivity extends AppCompatActivity {
     public static int questionCountTotal;
     public Question currentQuestion;
 
-    private int score;
+    protected int score = 0;
 
     private List<Question> questionList;
 
@@ -47,27 +46,16 @@ public class QuizActivity extends AppCompatActivity {
         questionCountTotal = questionList.size();
         Collections.shuffle(questionList);
 
-
-        checkAnswer();
         showNextQuestion();
 
-        View.OnClickListener onclickAnswer;
-
-        onclickAnswer = (View v) -> showAnswer();
+        View.OnClickListener onclickAnswer = (View view) -> showAnswer(view);
 
         // Look to see if these answer#.method() calls can be standardized somehow... perhaps by passing a method to some function which
         // then calls it on all three
         answer1.setOnClickListener(onclickAnswer);
         answer2.setOnClickListener(onclickAnswer);
         answer3.setOnClickListener(onclickAnswer);
-
     }
-
-    private void showAnswer() {
-        Intent intent = new Intent(QuizActivity.this, Answer.class);
-        startActivity(intent);
-    }
-
 
     private void showNextQuestion() {
         if (questionCounter < questionCountTotal) {
@@ -84,8 +72,46 @@ public class QuizActivity extends AppCompatActivity {
         }
     }
 
-    private void checkAnswer() {
+    private void showAnswer(View view) {
+        Integer userAnswerNumber = getAnswerNumber(view);
+        Intent intent = new Intent(QuizActivity.this, AnswerActivity.class);
+
+        Boolean checkAnswer = checkUserAnswer(userAnswerNumber);
+
+        intent.putExtra("ANSWER_NUMBER", userAnswerNumber);
+        intent.putExtra("CORRECT_ANSWER", checkAnswer);
+        startActivity(intent);
+    }
+
+    /**
+     * Return the answer number corresponding to which button was clicked.
+     *
+     * View view is the answer view for that button
+     * Returns the answer number corresponding to which button was clicked.
+     */
+    // Refactor
+    private Integer getAnswerNumber(View view) {
+        Integer answerNumber = 0;
+        switch (view.getId()) {
+            case R.id.btnAnswer1:
+                answerNumber = 1;
+            case R.id.btnAnswer2:
+                answerNumber = 2;
+            case R.id.btnAnswer3:
+                answerNumber = 3;
+        }
+        return answerNumber;
+    }
+
+    private Boolean checkUserAnswer(Integer userAnswerNumber) {
         // Next step is to have this check answer
+        Integer correctAnswerNumber = currentQuestion.getAnswerNumber();
+        if (correctAnswerNumber == userAnswerNumber) {
+            this.score++;
+            textViewScore.setText("Score: " + this.score);
+            return true;
+        }
+        return false;
     }
 
     private void finishQuiz() {
