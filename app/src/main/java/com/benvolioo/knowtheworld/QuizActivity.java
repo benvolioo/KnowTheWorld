@@ -13,6 +13,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class QuizActivity extends AppCompatActivity {
+    // Constants For Result and Shared Preferences
+    public static final Integer REQUEST_CODE_ANSWER = 1;
+    public static final String SHARED_PREFERENCES = "sharedPrefs";
+    public static final String KEY_SCORE = "keyHighscore";
+
+
     private TextView textViewQuestion;
     private TextView textViewScore;
     private TextView textViewQuestionCount;
@@ -76,10 +82,12 @@ public class QuizActivity extends AppCompatActivity {
         Integer userAnswerNumber = getAnswerNumber(view);
         Intent intent = new Intent(QuizActivity.this, AnswerActivity.class);
 
-        Boolean checkAnswer = checkUserAnswer(userAnswerNumber);
+        Boolean answerResult = checkUserAnswer(userAnswerNumber);
 
         intent.putExtra("ANSWER_NUMBER", userAnswerNumber);
-        intent.putExtra("CORRECT_ANSWER", checkAnswer);
+        intent.putExtra("ANSWER_RESULT", answerResult);
+        intent.putExtra("QUESTION_COUNT", questionCounter);
+        intent.putExtra("CURRENT_SCORE", score);
         startActivity(intent);
     }
 
