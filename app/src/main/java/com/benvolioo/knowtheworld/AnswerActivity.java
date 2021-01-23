@@ -17,6 +17,8 @@ public class AnswerActivity extends AppCompatActivity {
 
     private Integer pbMax = QuizActivity.questionCountTotal;
     private Integer currentScore;
+    private Integer questionCount;
+    private Boolean checkedAnswer;
 
 
     private TextView txtAnswerResult;
@@ -29,26 +31,40 @@ public class AnswerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_answer);
 
         Intent intent = getIntent();
-        Boolean checkedAnswer = intent.getBooleanExtra("ANSWER_RESULT", false);
-        txtAnswerResult = findViewById(R.id.txtAnswerResult);
 
-//        currentScore = intent.getIntExtra("CURRENT_SCORE", 0);
-//
-        setTxtCheckedAnswer(checkedAnswer);
-//
+        txtAnswerResult = findViewById(R.id.txtAnswerResult);
         btnNextQuestion = findViewById(R.id.btnNextQuestion);
+
+        checkedAnswer = intent.getBooleanExtra("ANSWER_RESULT", true);
+        currentScore = intent.getIntExtra("CURRENT_SCORE", 0);
+        questionCount = intent.getIntExtra("QUESTION_COUNT", 0);
+
+        setTxtCheckedAnswer();
+
+        View.OnClickListener onclickNextQuestion = (View view) -> finishAnswer();
+        btnNextQuestion.setOnClickListener(onclickNextQuestion);
 //
 //        Integer questionCounter = intent.getIntExtra("QUESTION_COUNT", 0);
 //        pbPercentCorrect.setProgress(questionCounter/pbMax);
 
     }
 
+    private void finishAnswer() {
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra(QUESTION_COUNT, questionCount);
+        resultIntent.putExtra(CURRENT_SCORE, currentScore);
+        setResult(RESULT_OK, resultIntent);
+        finish();
+    }
 
-    private void setTxtCheckedAnswer(Boolean checkedAnswer) {
+
+    private void setTxtCheckedAnswer() {
         if (checkedAnswer) {
             txtAnswerResult.setText("Correct");
         } else {
             txtAnswerResult.setText("Not quite");
         }
     }
+
+
 }

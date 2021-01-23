@@ -10,20 +10,32 @@
         android:id="@+id/txtAnswerResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingTop="40dp"
         android:text="Correct"
         android:textColor="@color/black"
         android:textSize="32sp"
-        app:layout_constraintBottom_toTopOf="@+id/pbAnswers"
+        app:layout_constraintBottom_toTopOf="@+id/txtPopProportionCorrect"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/txtAnswerInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="This is more info on the question and reiterates the sentence in full."
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/pbAnswers"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtAnswerResult" />
 
 
     <ProgressBar
         android:id="@+id/pbAnswers"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="409dp"
-        android:layout_height="12dp"
+        android:layout_height="20dp"
         android:layout_marginStart="2dp"
         android:layout_marginEnd="2dp"
         android:orientation="horizontal"
@@ -38,24 +50,25 @@
         android:id="@+id/txtPopProportionCorrect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="40dp"
         android:text="Pop Proportion"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pbAnswers" />
+        app:layout_constraintTop_toBottomOf="@+id/txtAnswerResult" />
 
     <Button
         android:id="@+id/btnNextQuestion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_width="260dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="40dp"
         android:backgroundTint="@color/black"
         android:text="Next Question"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

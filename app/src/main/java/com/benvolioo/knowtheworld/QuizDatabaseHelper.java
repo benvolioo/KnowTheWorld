@@ -15,7 +15,7 @@ import java.util.List;
 
 public class QuizDatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "KnowTheWorld.database";
+    private static final String DATABASE_NAME = "KnowTheWorld2.database";
     private static final int DATABASE_VERSION = 1;
 
     private SQLiteDatabase db;
@@ -50,13 +50,13 @@ public class QuizDatabaseHelper extends SQLiteOpenHelper {
     }
 
     private void fillQuestionsTable() {
-        Question q1 = new Question("This is a sample question", "True", "False", "Neither", 1);
+        Question q1 = new Question("10 is correct", "10", "20", "Neither", 1);
         addQuestion(q1);
 
-        Question q2 = new Question("This is a third sample question", "True", "False", "Neither", 2);
+        Question q2 = new Question("30 is correct", "30", "20", "Neither", 1);
         addQuestion(q2);
 
-        Question q3 = new Question("This is a third sample question", "True", "False", "Neither", 1);
+        Question q3 = new Question("20 is correct", "10", "20", "Neither", 2);
         addQuestion(q3);
     }
 

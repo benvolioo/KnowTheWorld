@@ -1,5 +1,6 @@
 package com.benvolioo.knowtheworld;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -16,7 +17,7 @@ public class QuizActivity extends AppCompatActivity {
     // Constants For Result and Shared Preferences
     public static final Integer REQUEST_CODE_ANSWER = 1;
     public static final String SHARED_PREFERENCES = "sharedPrefs";
-    public static final String KEY_SCORE = "keyHighscore";
+    public static final String EXTRA_SCORE = "extraScore";
 
 
     private TextView textViewQuestion;
@@ -26,7 +27,7 @@ public class QuizActivity extends AppCompatActivity {
     private Button answer2;
     private Button answer3;
 
-    public int questionCounter = 0;
+    public int questionCount = 0;
     public static int questionCountTotal;
     public Question currentQuestion;
 
@@ -64,31 +65,54 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void showNextQuestion() {
-        if (questionCounter < questionCountTotal) {
-            currentQuestion = questionList.get(questionCounter++);
+        if (questionCount < questionCountTotal) {
+            currentQuestion = questionList.get(questionCount++);
 
             textViewQuestion.setText(currentQuestion.getQuestion());
             answer1.setText(currentQuestion.getAnswer1());
             answer2.setText(currentQuestion.getAnswer2());
             answer3.setText(currentQuestion.getAnswer3());
 
-            textViewQuestionCount.setText("Question: " + questionCounter + "/" + questionCountTotal);
+            updateQuestionCount(questionCount);
         } else {
             finishQuiz();
         }
     }
 
     private void showAnswer(View view) {
-        Integer userAnswerNumber = getAnswerNumber(view);
+        Integer userAnswerNumber = getBtnNumber(view);
         Intent intent = new Intent(QuizActivity.this, AnswerActivity.class);
 
         Boolean answerResult = checkUserAnswer(userAnswerNumber);
 
-        intent.putExtra("ANSWER_NUMBER", userAnswerNumber);
         intent.putExtra("ANSWER_RESULT", answerResult);
-        intent.putExtra("QUESTION_COUNT", questionCounter);
+        intent.putExtra("QUESTION_COUNT", questionCount);
         intent.putExtra("CURRENT_SCORE", score);
-        startActivity(intent);
+        startActivityForResult(intent, REQUEST_CODE_ANSWER);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE_ANSWER) {
+            if (resultCode == RESULT_OK) {
+                score = data.getIntExtra(AnswerActivity.CURRENT_SCORE, 0);
+                questionCount = data.getIntExtra(AnswerActivity.QUESTION_COUNT, 0);
+
+                updateScore(score);
+                updateQuestionCount(questionCount);
+                showNextQuestion();
+            }
+        }
+    }
+
+    private void updateScore(Integer score) {
+        textViewScore.setText("Score: " + score);
+    }
+
+    private void updateQuestionCount(Integer questionCount) {
+        textViewQuestionCount.setText("Question: " + questionCount + "/" + questionCountTotal);
     }
 
     /**
@@ -98,7 +122,7 @@ public class QuizActivity extends AppCompatActivity {
      * Returns the answer number corresponding to which button was clicked.
      */
     // Refactor
-    private Integer getAnswerNumber(View view) {
+    private Integer getBtnNumber(View view) {
         Integer answerNumber = 0;
         switch (view.getId()) {
             case R.id.btnAnswer1:
@@ -115,14 +139,16 @@ public class QuizActivity extends AppCompatActivity {
         // Next step is to have this check answer
         Integer correctAnswerNumber = currentQuestion.getAnswerNumber();
         if (correctAnswerNumber == userAnswerNumber) {
-            this.score++;
-            textViewScore.setText("Score: " + this.score);
+            updateScore(score++);
             return true;
         }
         return false;
     }
 
     private void finishQuiz() {
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra(EXTRA_SCORE, score);
+        setResult(RESULT_OK, resultIntent);
         finish();
     }
 
