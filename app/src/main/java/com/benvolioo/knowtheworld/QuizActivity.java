@@ -30,6 +30,7 @@ public class QuizActivity extends AppCompatActivity {
     public int questionCount = 0;
     public static int questionCountTotal;
     public Question currentQuestion;
+    public Integer userAnswerNumber;
 
     protected int score = 0;
 
@@ -80,7 +81,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void showAnswer(View view) {
-        Integer userAnswerNumber = getBtnNumber(view);
+        getBtnNumber(view);
         Intent intent = new Intent(QuizActivity.this, AnswerActivity.class);
 
         Boolean answerResult = checkUserAnswer(userAnswerNumber);
@@ -122,17 +123,19 @@ public class QuizActivity extends AppCompatActivity {
      * Returns the answer number corresponding to which button was clicked.
      */
     // Refactor
-    private Integer getBtnNumber(View view) {
-        Integer answerNumber = 0;
-        switch (view.getId()) {
+    private void getBtnNumber(View view) {
+        Integer idNumber = view.getId();
+        switch (idNumber) {
             case R.id.btnAnswer1:
-                answerNumber = 1;
+                userAnswerNumber = 1;
+                break;
             case R.id.btnAnswer2:
-                answerNumber = 2;
+                userAnswerNumber = 2;
+                break;
             case R.id.btnAnswer3:
-                answerNumber = 3;
+                userAnswerNumber = 3;
+                break;
         }
-        return answerNumber;
     }
 
     private Boolean checkUserAnswer(Integer userAnswerNumber) {
