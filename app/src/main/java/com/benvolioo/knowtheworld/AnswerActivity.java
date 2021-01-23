@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AnswerActivity extends AppCompatActivity {
     public static final String CURRENT_SCORE = "currentScore";
@@ -26,6 +27,8 @@ public class AnswerActivity extends AppCompatActivity {
     private TextView txtAnswerResult;
     private Button btnNextQuestion;
     private ProgressBar pbPercentCorrect;
+
+    private long backPressedTime;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -70,5 +73,19 @@ public class AnswerActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        if (backPressedTime + 2000 > System.currentTimeMillis()){
+            backToQuestion();
+        } else {
+            Toast.makeText(this, "Press back again to finish", Toast.LENGTH_SHORT).show();
+        }
+        backPressedTime = System.currentTimeMillis();
+    }
 
+    // Not sure if this actually works.
+    private void backToQuestion() {
+        Intent backIntent = getIntent();
+        startActivity(backIntent);
+    }
 }

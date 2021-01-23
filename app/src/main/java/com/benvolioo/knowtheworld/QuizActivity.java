@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import java.util.Collections;
@@ -31,6 +32,8 @@ public class QuizActivity extends AppCompatActivity {
     public static int questionCountTotal;
     public Question currentQuestion;
     public Integer userAnswerNumber;
+
+    private long backPressedTime;
 
     protected int score = 0;
 
@@ -155,4 +158,15 @@ public class QuizActivity extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    public void onBackPressed() {
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
+            finishQuiz();
+        } else {
+            Toast.makeText(this, "Press back again to finish", Toast.LENGTH_SHORT).show();
+        }
+
+        backPressedTime = System.currentTimeMillis();
+
+    }
 }
