@@ -1,9 +1,11 @@
 package com.benvolioo.knowtheworld;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import com.benvolioo.knowtheworld.QuizActivity.*;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +27,7 @@ public class AnswerActivity extends AppCompatActivity {
     private Button btnNextQuestion;
     private ProgressBar pbPercentCorrect;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +37,7 @@ public class AnswerActivity extends AppCompatActivity {
 
         txtAnswerResult = findViewById(R.id.txtAnswerResult);
         btnNextQuestion = findViewById(R.id.btnNextQuestion);
+        pbPercentCorrect = findViewById(R.id.pbAnswers);
 
         checkedAnswer = intent.getBooleanExtra("ANSWER_RESULT", true);
         currentScore = intent.getIntExtra("CURRENT_SCORE", 0);
@@ -43,9 +47,9 @@ public class AnswerActivity extends AppCompatActivity {
 
         View.OnClickListener onclickNextQuestion = (View view) -> finishAnswer();
         btnNextQuestion.setOnClickListener(onclickNextQuestion);
-//
-//        Integer questionCounter = intent.getIntExtra("QUESTION_COUNT", 0);
-//        pbPercentCorrect.setProgress(questionCounter/pbMax);
+
+        int currentProgress = (int) (currentScore * 100.0f)/pbMax;
+        pbPercentCorrect.setProgress(currentProgress);
 
     }
 
