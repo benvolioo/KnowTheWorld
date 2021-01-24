@@ -1,5 +1,6 @@
 package com.benvolioo.knowtheworld;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,6 +21,10 @@ public class QuizActivity extends AppCompatActivity {
     public static final Integer REQUEST_CODE_ANSWER = 1;
     public static final String SHARED_PREFERENCES = "sharedPrefs";
     public static final String EXTRA_SCORE = "extraScore";
+
+    private static final String KEY_SCORE = "keyScore";
+    private static final String KEY_QUESTION_COUNT = "keyQuestionCount";
+    private static final String KEY_QUESTION_LIST = "keyQuestionList";
 
 
     private TextView textViewQuestion;
@@ -37,7 +43,7 @@ public class QuizActivity extends AppCompatActivity {
 
     protected int score = 0;
 
-    private List<Question> questionList;
+    private ArrayList<Question> questionList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +58,22 @@ public class QuizActivity extends AppCompatActivity {
         answer2 = findViewById(R.id.btnAnswer2);
         answer3 = findViewById(R.id.btnAnswer3);
 
-        QuizDatabaseHelper databaseHelper = new QuizDatabaseHelper(this);
-        questionList = databaseHelper.getAllQuestions();
-        questionCountTotal = questionList.size();
-        Collections.shuffle(questionList);
+        // When first starting the quiz, saved instance state is null.
+        if (savedInstanceState == null) {
+            QuizDatabaseHelper databaseHelper = new QuizDatabaseHelper(this);
+            questionList = databaseHelper.getAllQuestions();
+            questionCountTotal = questionList.size();
+            Collections.shuffle(questionList);
 
-        showNextQuestion();
+            showNextQuestion();
+        } else {
+            questionList = savedInstanceState.getParcelableArrayList(KEY_QUESTION_LIST);
+            questionCountTotal = questionList.size();
+            questionCount = savedInstanceState.getInt(KEY_QUESTION_COUNT);
+            currentQuestion = questionList.get(questionCount - 1);
+            score = savedInstanceState.getInt(KEY_SCORE);
+        }
+
 
         View.OnClickListener onclickAnswer = (View view) -> showAnswer(view);
 
@@ -168,5 +184,14 @@ public class QuizActivity extends AppCompatActivity {
 
         backPressedTime = System.currentTimeMillis();
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putInt(KEY_SCORE, score);
+        outState.putInt(KEY_QUESTION_COUNT, questionCount);
+        outState.putParcelableArrayList(KEY_QUESTION_LIST, questionList);
     }
 }

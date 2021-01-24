@@ -27,6 +27,7 @@ public class AnswerActivity extends AppCompatActivity {
     private TextView txtAnswerResult;
     private Button btnNextQuestion;
     private ProgressBar pbPercentCorrect;
+    private Intent intent;
 
     private long backPressedTime;
 
@@ -36,7 +37,7 @@ public class AnswerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_answer);
 
-        Intent intent = getIntent();
+        intent = getIntent();
 
         txtAnswerResult = findViewById(R.id.txtAnswerResult);
         btnNextQuestion = findViewById(R.id.btnNextQuestion);
@@ -85,7 +86,6 @@ public class AnswerActivity extends AppCompatActivity {
 
     // Not sure if this actually works.
     private void backToQuestion() {
-        Intent backIntent = getIntent();
-        startActivity(backIntent);
+        startActivity(intent);
     }
 }
