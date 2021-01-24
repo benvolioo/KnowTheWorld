@@ -2,7 +2,6 @@ package com.benvolioo.knowtheworld;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import com.benvolioo.knowtheworld.QuizActivity.*;
 
 import android.content.Intent;
 import android.os.Build;
@@ -24,7 +23,7 @@ public class AnswerActivity extends AppCompatActivity {
     private Boolean checkedAnswer;
 
 
-    private TextView txtAnswerResult;
+    private TextView tvAnswerResult;
     private Button btnNextQuestion;
     private ProgressBar pbPercentCorrect;
     private Intent intent;
@@ -39,7 +38,7 @@ public class AnswerActivity extends AppCompatActivity {
 
         intent = getIntent();
 
-        txtAnswerResult = findViewById(R.id.txtAnswerResult);
+        tvAnswerResult = findViewById(R.id.txtAnswerResult);
         btnNextQuestion = findViewById(R.id.btnNextQuestion);
         pbPercentCorrect = findViewById(R.id.pbAnswers);
 
@@ -68,9 +67,9 @@ public class AnswerActivity extends AppCompatActivity {
 
     private void setTxtCheckedAnswer() {
         if (checkedAnswer) {
-            txtAnswerResult.setText("Correct");
+            tvAnswerResult.setText("Correct");
         } else {
-            txtAnswerResult.setText("Not quite");
+            tvAnswerResult.setText("Not quite");
         }
     }
 

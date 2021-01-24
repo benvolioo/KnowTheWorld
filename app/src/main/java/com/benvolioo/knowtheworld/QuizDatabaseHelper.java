@@ -8,10 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.benvolioo.knowtheworld.QuizContract.*;
 
-import androidx.annotation.Nullable;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class QuizDatabaseHelper extends SQLiteOpenHelper {
 
@@ -66,7 +63,7 @@ public class QuizDatabaseHelper extends SQLiteOpenHelper {
         cv.put(QuestionsTable.COLUMN_ANSWER1, question.getAnswer1());
         cv.put(QuestionsTable.COLUMN_ANSWER2, question.getAnswer2());
         cv.put(QuestionsTable.COLUMN_ANSWER3, question.getAnswer3());
-        cv.put(QuestionsTable.COLUMN_ANSWER_NUMBER, question.getAnswerNumber());
+        cv.put(QuestionsTable.COLUMN_ANSWER_NUMBER, question.getCorrectAnswer());
 
         db.insert(QuestionsTable.TABLE_NAME, null, cv);
     }
@@ -83,7 +80,7 @@ public class QuizDatabaseHelper extends SQLiteOpenHelper {
                 question.setAnswer1(cursor.getString(cursor.getColumnIndex(QuestionsTable.COLUMN_ANSWER1)));
                 question.setAnswer2(cursor.getString(cursor.getColumnIndex(QuestionsTable.COLUMN_ANSWER2)));
                 question.setAnswer3(cursor.getString(cursor.getColumnIndex(QuestionsTable.COLUMN_ANSWER3)));
-                question.setAnswerNumber(cursor.getInt(cursor.getColumnIndex(QuestionsTable.COLUMN_ANSWER_NUMBER)));
+                question.setCorrectAnswer(cursor.getInt(cursor.getColumnIndex(QuestionsTable.COLUMN_ANSWER_NUMBER)));
                 questionList.add(question);
             } while (cursor.moveToNext());
         }

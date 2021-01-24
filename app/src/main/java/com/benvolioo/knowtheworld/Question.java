@@ -8,14 +8,14 @@ public class Question implements Parcelable {
     private String answer1;
     private String answer2;
     private String answer3;
-    private Integer answerNumber;
+    private Integer correctAnswer;
 
-    public Question(String question, String answer1, String answer2, String answer3, Integer answerNumber) {
+    public Question(String question, String answer1, String answer2, String answer3, Integer correctAnswer) {
         this.question = question;
         this.answer1 = answer1;
         this.answer2 = answer2;
         this.answer3 = answer3;
-        this.answerNumber = answerNumber;
+        this.correctAnswer = correctAnswer;
     }
 
     public Question() { }
@@ -27,9 +27,9 @@ public class Question implements Parcelable {
         answer2 = in.readString();
         answer3 = in.readString();
         if (in.readByte() == 0) {
-            answerNumber = null;
+            correctAnswer = null;
         } else {
-            answerNumber = in.readInt();
+            correctAnswer = in.readInt();
         }
     }
 
@@ -39,11 +39,11 @@ public class Question implements Parcelable {
         dest.writeString(answer1);
         dest.writeString(answer2);
         dest.writeString(answer3);
-        if (answerNumber == null) {
+        if (correctAnswer == null) {
             dest.writeByte((byte) 0);
         } else {
             dest.writeByte((byte) 1);
-            dest.writeInt(answerNumber);
+            dest.writeInt(correctAnswer);
         }
     }
 
@@ -96,11 +96,11 @@ public class Question implements Parcelable {
         this.answer3 = answer3;
     }
 
-    public Integer getAnswerNumber() {
-        return answerNumber;
+    public Integer getCorrectAnswer() {
+        return correctAnswer;
     }
 
-    public void setAnswerNumber(Integer answerNumber) {
-        this.answerNumber = answerNumber;
+    public void setCorrectAnswer(Integer correctAnswer) {
+        this.correctAnswer = correctAnswer;
     }
 }
