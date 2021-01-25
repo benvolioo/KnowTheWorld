@@ -9,13 +9,15 @@ public class Question implements Parcelable {
     private String answer2;
     private String answer3;
     private Integer correctAnswer;
+    private String answerInfo;
 
-    public Question(String question, String answer1, String answer2, String answer3, Integer correctAnswer) {
+    public Question(String question, String answer1, String answer2, String answer3, Integer correctAnswer, String answerInfo) {
         this.question = question;
         this.answer1 = answer1;
         this.answer2 = answer2;
         this.answer3 = answer3;
         this.correctAnswer = correctAnswer;
+        this.answerInfo = answerInfo;
     }
 
     public Question() { }
@@ -31,6 +33,7 @@ public class Question implements Parcelable {
         } else {
             correctAnswer = in.readInt();
         }
+        answerInfo = in.readString();
     }
 
     @Override
@@ -45,6 +48,7 @@ public class Question implements Parcelable {
             dest.writeByte((byte) 1);
             dest.writeInt(correctAnswer);
         }
+        dest.writeString(answerInfo);
     }
 
     @Override
@@ -103,4 +107,8 @@ public class Question implements Parcelable {
     public void setCorrectAnswer(Integer correctAnswer) {
         this.correctAnswer = correctAnswer;
     }
+
+    public String getAnswerInfo() { return answerInfo; }
+
+    public void setAnswerInfo(String answerInfo) { this.answerInfo = answerInfo; }
 }

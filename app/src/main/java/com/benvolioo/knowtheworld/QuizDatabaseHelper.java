@@ -12,7 +12,8 @@ import java.util.ArrayList;
 
 public class QuizDatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "KnowTheWorld2.database";
+    // TODO: Learn databases more. rn need to change name everytime I want new database. Delete old ones.
+    private static final String DATABASE_NAME = "KnowTheWorld3.database";
     private static final int DATABASE_VERSION = 1;
 
     private SQLiteDatabase db;
@@ -33,7 +34,8 @@ public class QuizDatabaseHelper extends SQLiteOpenHelper {
                 QuestionsTable.COLUMN_ANSWER1 + " TEXT, " +
                 QuestionsTable.COLUMN_ANSWER2 + " TEXT, " +
                 QuestionsTable.COLUMN_ANSWER3 + " TEXT, " +
-                QuestionsTable.COLUMN_ANSWER_NUMBER + " INTEGER" +
+                QuestionsTable.COLUMN_ANSWER_NUMBER + " INTEGER, " +
+                QuestionsTable.COLUMN_ANSWER_INFO + " TEXT " +
                 ")";
 
         db.execSQL(SQL_CREATE_QUESTIONS_TABLE);
@@ -47,13 +49,13 @@ public class QuizDatabaseHelper extends SQLiteOpenHelper {
     }
 
     private void fillQuestionsTable() {
-        Question q1 = new Question("10 is correct", "10", "20", "Neither", 1);
+        Question q1 = new Question("10 is correct", "10", "20", "Neither", 1, "No more info here.");
         addQuestion(q1);
 
-        Question q2 = new Question("30 is correct", "30", "20", "Neither", 1);
+        Question q2 = new Question("30 is correct", "30", "20", "Neither", 1, "While I would like there to be some more info, there isn't.");
         addQuestion(q2);
 
-        Question q3 = new Question("20 is correct", "10", "20", "Neither", 2);
+        Question q3 = new Question("20 is correct", "10", "20", "Neither", 2, "These should come from strings.txt");
         addQuestion(q3);
     }
 
@@ -64,7 +66,7 @@ public class QuizDatabaseHelper extends SQLiteOpenHelper {
         cv.put(QuestionsTable.COLUMN_ANSWER2, question.getAnswer2());
         cv.put(QuestionsTable.COLUMN_ANSWER3, question.getAnswer3());
         cv.put(QuestionsTable.COLUMN_ANSWER_NUMBER, question.getCorrectAnswer());
-
+        cv.put(QuestionsTable.COLUMN_ANSWER_INFO, question.getAnswerInfo());
         db.insert(QuestionsTable.TABLE_NAME, null, cv);
     }
 
@@ -81,6 +83,7 @@ public class QuizDatabaseHelper extends SQLiteOpenHelper {
                 question.setAnswer2(cursor.getString(cursor.getColumnIndex(QuestionsTable.COLUMN_ANSWER2)));
                 question.setAnswer3(cursor.getString(cursor.getColumnIndex(QuestionsTable.COLUMN_ANSWER3)));
                 question.setCorrectAnswer(cursor.getInt(cursor.getColumnIndex(QuestionsTable.COLUMN_ANSWER_NUMBER)));
+                question.setAnswerInfo(cursor.getString(cursor.getColumnIndex(QuestionsTable.COLUMN_ANSWER_INFO)));
                 questionList.add(question);
             } while (cursor.moveToNext());
         }

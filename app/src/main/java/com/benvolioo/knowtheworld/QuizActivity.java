@@ -84,7 +84,7 @@ public class QuizActivity extends AppCompatActivity {
      * @return <code>true</code> if it is the first time starting the quiz.
      *         <code>false</code> if it is not the first time starting the quiz.
      */
-    private boolean firstStart(Bundle savedInstanceState) {
+    private <T extends Bundle> boolean firstStart(T savedInstanceState) {
         return savedInstanceState == null;
     }
 

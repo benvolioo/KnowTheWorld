@@ -12,6 +12,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class AnswerActivity extends AppCompatActivity {
     public static final String CURRENT_SCORE = "currentScore";
     public static final String QUESTION_COUNT = "questionCounter";
@@ -24,9 +26,14 @@ public class AnswerActivity extends AppCompatActivity {
 
 
     private TextView tvAnswerResult;
+    private TextView tvAnswerInfo;
     private Button btnNextQuestion;
     private ProgressBar pbPercentCorrect;
     private Intent intent;
+
+    private ArrayList<Question> questionList;
+    private Question currentQuestion;
+    private String answerInfo;
 
     private long backPressedTime;
 
@@ -39,6 +46,7 @@ public class AnswerActivity extends AppCompatActivity {
         intent = getIntent();
 
         tvAnswerResult = findViewById(R.id.txtAnswerResult);
+        tvAnswerInfo = findViewById(R.id.txtAnswerInfo);
         btnNextQuestion = findViewById(R.id.btnNextQuestion);
         pbPercentCorrect = findViewById(R.id.pbAnswers);
 
@@ -48,12 +56,33 @@ public class AnswerActivity extends AppCompatActivity {
 
         setTxtCheckedAnswer();
 
+        if (lastQuestion()){
+            btnNextQuestion.setText("Finish Quiz");
+        }
         View.OnClickListener onclickNextQuestion = (View view) -> finishAnswer();
         btnNextQuestion.setOnClickListener(onclickNextQuestion);
 
         int currentProgress = (int) (currentScore * 100.0f)/pbMax;
         pbPercentCorrect.setProgress(currentProgress);
 
+        updateAnswerInfo();
+
+    }
+
+    private void updateAnswerInfo() {
+        QuizDatabaseHelper databaseHelper = new QuizDatabaseHelper(this);
+        questionList = databaseHelper.getAllQuestions();
+        currentQuestion = questionList.get(questionCount - 1);
+        answerInfo = currentQuestion.getAnswerInfo();
+        setTvAnswerInfo(answerInfo);
+    }
+
+    private void setTvAnswerInfo(String answerInfo) {
+        tvAnswerInfo.setText(answerInfo);
+    }
+
+    private boolean lastQuestion() {
+        return questionCount == QuizActivity.questionCountTotal;
     }
 
     private void finishAnswer() {
@@ -83,7 +112,7 @@ public class AnswerActivity extends AppCompatActivity {
         backPressedTime = System.currentTimeMillis();
     }
 
-    // Not sure if this actually works.
+
     private void backToQuestion() {
         startActivity(intent);
     }
