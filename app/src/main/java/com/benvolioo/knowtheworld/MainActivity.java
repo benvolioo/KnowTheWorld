@@ -18,7 +18,12 @@ public class MainActivity extends AppCompatActivity {
 
     // UI element declarations.
     private TextView tvHighscore;
-    private Button btnStartQuiz;
+    private Button btnTopicEconomics;
+    private Button btnTopicSociety;
+    private Button btnTopicNecessities;
+    private Button btnTopicGovernment;
+    private Button btnTopicEnergy;
+    private Button btnTopicHealth;
     private Integer highscore;
 
     /**
@@ -34,16 +39,44 @@ public class MainActivity extends AppCompatActivity {
         tvHighscore = findViewById(R.id.txtHighscore);
         loadHighscore();
 
-        btnStartQuiz = findViewById(R.id.btnMain);
-        btnStartQuiz.setOnClickListener((View view) -> startQuiz());
+        btnTopicEconomics = findViewById(R.id.btnTopicEcon);
+        btnTopicSociety = findViewById(R.id.btnTopicSociety);
+        btnTopicNecessities = findViewById(R.id.btnTopicNecessities);
+        btnTopicGovernment = findViewById(R.id.btnTopicGovernment);
+        btnTopicEnergy = findViewById(R.id.btnTopicEnergy);
+        btnTopicHealth = findViewById(R.id.btnTopicHealth);
+
+
+        View.OnClickListener onClickTopic = (View view) -> startQuiz(view);
+
+        btnTopicEconomics.setOnClickListener(onClickTopic);
+        btnTopicSociety.setOnClickListener(onClickTopic);
+        btnTopicNecessities.setOnClickListener(onClickTopic);
+        btnTopicGovernment.setOnClickListener(onClickTopic);
+        btnTopicEnergy.setOnClickListener(onClickTopic);
+        btnTopicHealth.setOnClickListener(onClickTopic);
     }
 
     /**
      * Called when user clicks <code>btnStartQuiz</code>. Starts <code>QuizActivity</code> for result.
      */
-    private void startQuiz() {
+    private void startQuiz(View view) {
         Intent intent = new Intent(MainActivity.this, QuizActivity.class);
+        intent.putExtra("CLICKED_TOPIC", getClickedTopic(view));
+
         startActivityForResult(intent, REQUEST_CODE_QUIZ);
+    }
+
+    private String getClickedTopic(View view) {
+        switch(view.getId()) {
+            case R.id.btnTopicEcon: return Question.TOPIC_ECONOMICS;
+            case R.id.btnTopicSociety: return Question.TOPIC_SOCIETY;
+            case R.id.btnTopicNecessities: return Question.TOPIC_NECESSITIES;
+            case R.id.btnTopicGovernment: return Question.TOPIC_GOVERNMENT;
+            case R.id.btnTopicEnergy: return Question.TOPIC_ENERGY;
+            case R.id.btnTopicHealth: return Question.TOPIC_HEALTH;
+        }
+        return "";
     }
 
     /**

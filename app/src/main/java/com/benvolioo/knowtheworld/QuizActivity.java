@@ -43,6 +43,7 @@ public class QuizActivity extends AppCompatActivity {
     private long backPressedTime;
     protected Integer score = 0;
     private ArrayList<Question> questionList;
+    private String clickedTopic;
 
     /**
      * Called to setup the <code>QuizActivity</code> on app startup.
@@ -61,8 +62,10 @@ public class QuizActivity extends AppCompatActivity {
         btnAnswer2 = findViewById(R.id.btnAnswer2);
         btnAnswer3 = findViewById(R.id.btnAnswer3);
 
+        clickedTopic = getIntent().getStringExtra("CLICKED_TOPIC");
+
         if (firstStart(savedInstanceState)) {
-            questionSetUp();
+            questionSetUp(clickedTopic);
             showNextQuestion();
         } else {
             questionRetrieve(savedInstanceState);
@@ -91,9 +94,9 @@ public class QuizActivity extends AppCompatActivity {
     /**
      * Gets all questions from database, gets a count total, shuffles them.
      */
-    private void questionSetUp() {
+    private void questionSetUp(String clickedTopic) {
         QuizDatabaseHelper databaseHelper = new QuizDatabaseHelper(this);
-        questionList = databaseHelper.getAllQuestions();
+        questionList = databaseHelper.getTopicQuestions(clickedTopic);
         questionCountTotal = questionList.size();
         Collections.shuffle(questionList);
     }
@@ -135,12 +138,11 @@ public class QuizActivity extends AppCompatActivity {
      *             <code>AnswerActivity</code>.
      */
     private void showAnswer(View view) {
-        Integer userAnswer = getUserAnswer(view);
         Intent intent = new Intent(QuizActivity.this, AnswerActivity.class);
 
-        Boolean answerResult = checkUserAnswer(userAnswer);
+        Integer userAnswer = getUserAnswer(view);
 
-        intent.putExtra("ANSWER_RESULT", answerResult);
+        intent.putExtra("ANSWER_RESULT", checkUserAnswer(userAnswer));
         intent.putExtra("QUESTION_COUNT", questionCount);
         intent.putExtra("CURRENT_SCORE", score);
         startActivityForResult(intent, REQUEST_CODE_ANSWER);

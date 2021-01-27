@@ -4,25 +4,35 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Question implements Parcelable {
+    public static final String TOPIC_ECONOMICS = "Economics";
+    public static final String TOPIC_SOCIETY = "Society";
+    public static final String TOPIC_NECESSITIES = "Necessities";
+    public static final String TOPIC_GOVERNMENT = "Government";
+    public static final String TOPIC_ENERGY = "Energy";
+    public static final String TOPIC_HEALTH = "Health";
+
     private String question;
     private String answer1;
     private String answer2;
     private String answer3;
     private Integer correctAnswer;
     private String answerInfo;
+    private String topic;
 
-    public Question(String question, String answer1, String answer2, String answer3, Integer correctAnswer, String answerInfo) {
+    public Question(String question, String answer1, String answer2,
+                    String answer3, Integer correctAnswer, String answerInfo, String topic) {
         this.question = question;
         this.answer1 = answer1;
         this.answer2 = answer2;
         this.answer3 = answer3;
         this.correctAnswer = correctAnswer;
         this.answerInfo = answerInfo;
+        this.topic = topic;
     }
 
     public Question() { }
 
-
+// Question(Parcel in) and writeToParcel() need to have the same order of r/w
     protected Question(Parcel in) {
         question = in.readString();
         answer1 = in.readString();
@@ -34,6 +44,7 @@ public class Question implements Parcelable {
             correctAnswer = in.readInt();
         }
         answerInfo = in.readString();
+        topic = in.readString();
     }
 
     @Override
@@ -49,6 +60,7 @@ public class Question implements Parcelable {
             dest.writeInt(correctAnswer);
         }
         dest.writeString(answerInfo);
+        dest.writeString(topic);
     }
 
     @Override
@@ -111,4 +123,13 @@ public class Question implements Parcelable {
     public String getAnswerInfo() { return answerInfo; }
 
     public void setAnswerInfo(String answerInfo) { this.answerInfo = answerInfo; }
+
+    public String getTopic() { return topic; }
+
+    public void setTopic(String topic) { this.topic = topic; }
+
+    public static String[] getAllTopics() {
+        return new String[] { TOPIC_ECONOMICS, TOPIC_ENERGY, TOPIC_GOVERNMENT, TOPIC_HEALTH,
+                TOPIC_NECESSITIES, TOPIC_SOCIETY};
+    }
 }

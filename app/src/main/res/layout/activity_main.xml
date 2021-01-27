@@ -14,36 +14,127 @@
         android:text="KnowTheWorld"
         android:textColor="@color/black"
         android:textSize="35sp"
-        app:layout_constraintBottom_toTopOf="@id/btnMain"
+        app:layout_constraintBottom_toTopOf="@id/txtHighscore"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="20dp"/>
 
     <TextView
         android:id="@+id/txtHighscore"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="This"
         android:textColor="@color/black"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnMain"
+        app:layout_constraintBottom_toTopOf="@+id/btnTopicEcon"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtKnowTheWorldMain" />
 
     <Button
-        android:id="@+id/btnMain"
+        android:id="@+id/btnTopicEcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:width="120pt"
         android:height="23pt"
         android:textColor="@color/black"
         app:cornerRadius="15dp"
-        android:text="Start Quiz"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Economics"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toTopOf="@id/btnTopicSociety"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtKnowTheWorldMain"
+        app:strokeColor="#000000"
+        app:strokeWidth="2.5dp" />
+
+
+    <Button
+        android:id="@+id/btnTopicSociety"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="120pt"
+        android:height="23pt"
+        android:textColor="@color/black"
+        android:layout_margin="10dp"
+        app:cornerRadius="15dp"
+        android:text="Society"
+        app:layout_constraintBottom_toTopOf="@id/btnTopicNecessities"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnTopicEcon"
+        app:strokeColor="#000000"
+        app:strokeWidth="2.5dp" />
+
+    <Button
+        android:id="@+id/btnTopicNecessities"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="120pt"
+        android:height="23pt"
+        android:textColor="@color/black"
+        app:cornerRadius="15dp"
+        android:text="Necessities"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toTopOf="@id/btnTopicGovernment"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnTopicSociety"
+        app:strokeColor="#000000"
+        app:strokeWidth="2.5dp" />
+
+    <Button
+        android:id="@+id/btnTopicGovernment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="120pt"
+        android:height="23pt"
+        android:textColor="@color/black"
+        android:layout_margin="10dp"
+        app:cornerRadius="15dp"
+        android:text="Government"
+        app:layout_constraintBottom_toTopOf="@id/btnTopicEnergy"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnTopicNecessities"
+        app:strokeColor="#000000"
+        app:strokeWidth="2.5dp" />
+
+    <Button
+        android:id="@+id/btnTopicEnergy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="120pt"
+        android:height="23pt"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        app:cornerRadius="15dp"
+        android:text="Energy"
+        app:layout_constraintBottom_toTopOf="@id/btnTopicHealth"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnTopicHealth"
+        app:strokeColor="#000000"
+        app:strokeWidth="2.5dp" />
+
+    <Button
+        android:id="@+id/btnTopicHealth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="120pt"
+        android:height="23pt"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        app:cornerRadius="15dp"
+        android:text="Health"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnTopicEnergy"
         app:strokeColor="#000000"
         app:strokeWidth="2.5dp" />
 
