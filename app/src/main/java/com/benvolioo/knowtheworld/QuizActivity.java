@@ -15,7 +15,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collections;
 
-
+/**
+ *
+ */
 // TODO: Think about splitting this class up.
 public class QuizActivity extends AppCompatActivity {
     // Constants for Result and Shared Preferences.

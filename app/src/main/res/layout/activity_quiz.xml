@@ -12,41 +12,44 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
+        android:freezesText="true"
         android:padding="10dp"
         android:text="Score: 0"
         android:textColor="@color/black"
         android:textSize="16dp"
+        android:typeface="monospace"
         app:layout_constraintBottom_toTopOf="@+id/txtViewQuestionCount"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:freezesText="true"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtViewQuestionCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
+        android:freezesText="true"
         android:padding="10dp"
         android:text="Question: 1/x"
         android:textColor="@color/black"
         android:textSize="16dp"
+        android:typeface="monospace"
         app:layout_constraintBottom_toBottomOf="@+id/txtViewScore"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtViewScore"
-        android:freezesText="true"/>
+        app:layout_constraintTop_toBottomOf="@+id/txtViewScore" />
 
     <TextView
         android:id="@+id/txtViewQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:freezesText="true"
         android:padding="15dp"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:typeface="monospace"
         app:layout_constraintBottom_toTopOf="@+id/btnAnswer1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:freezesText="true"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <Button
@@ -58,7 +61,8 @@
         android:freezesText="true"
         android:padding="7dp"
         android:textColor="@color/black"
-        app:cornerRadius="18dp"
+        android:typeface="monospace"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -74,7 +78,8 @@
         android:height="23pt"
         android:freezesText="true"
         android:textColor="@color/black"
-        app:cornerRadius="18dp"
+        android:typeface="monospace"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@id/btnAnswer3"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -90,7 +95,8 @@
         android:height="23pt"
         android:freezesText="true"
         android:textColor="@color/black"
-        app:cornerRadius="18dp"
+        android:typeface="monospace"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
