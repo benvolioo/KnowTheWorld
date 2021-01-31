@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">KnowTheWorld</string>
+    <string name="title_main">Know The World</string>
+    <string name="topicEcon_main">Economics</string>
+    <string name="topicSociety_main">Society</string>
+    <string name="topicNecessities_main">Necessities</string>
+    <string name="topicGovernment_main">Government</string>
+    <string name="topicEnergy_main">Energy</string>
+    <string name="topicHealth_main">Health</string>
+    <string name="NextQuestion_answer">Next Question</string>
 </resources>

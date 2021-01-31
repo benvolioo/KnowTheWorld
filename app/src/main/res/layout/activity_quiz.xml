@@ -10,13 +10,12 @@
         android:id="@+id/txtViewScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:freezesText="true"
         android:padding="10dp"
-        android:text="Score: 0"
         android:textColor="@color/black"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:typeface="monospace"
         app:layout_constraintBottom_toTopOf="@+id/txtViewQuestionCount"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -26,12 +25,11 @@
         android:id="@+id/txtViewQuestionCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:freezesText="true"
         android:padding="10dp"
-        android:text="Question: 1/x"
         android:textColor="@color/black"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:typeface="monospace"
         app:layout_constraintBottom_toBottomOf="@+id/txtViewScore"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -44,7 +42,7 @@
         android:freezesText="true"
         android:padding="15dp"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:typeface="monospace"
         app:layout_constraintBottom_toTopOf="@+id/btnAnswer1"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -67,7 +65,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtViewQuestionCount"
-        app:strokeColor="#000000"
+        app:strokeColor="@color/black"
         app:strokeWidth="3dp" />
 
     <Button
@@ -84,7 +82,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnAnswer1"
-        app:strokeColor="#000000"
+        app:strokeColor="@color/black"
         app:strokeWidth="3dp" />
 
     <Button
@@ -101,7 +99,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnAnswer2"
-        app:strokeColor="#000000"
+        app:strokeColor="@color/black"
         app:strokeWidth="2.5dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

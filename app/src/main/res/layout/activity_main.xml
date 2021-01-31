@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="20dp"
-        android:text="Know The World"
+        android:text="@string/title_main"
         android:textColor="@color/black"
         android:textSize="35sp"
         android:typeface="monospace"
@@ -28,7 +28,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="40dp"
-        android:text="This"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:typeface="monospace"
@@ -44,7 +43,7 @@
         android:layout_margin="10dp"
         android:width="120pt"
         android:height="23pt"
-        android:text="Economics"
+        android:text="@string/topicEcon_main"
         android:textColor="@color/black"
         android:typeface="monospace"
         app:cornerRadius="20dp"
@@ -52,7 +51,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtHighscore"
-        app:strokeColor="#000000"
+        app:strokeColor="@color/black"
         app:strokeWidth="2.5dp" />
 
 
@@ -63,7 +62,7 @@
         android:layout_margin="10dp"
         android:width="120pt"
         android:height="23pt"
-        android:text="Society"
+        android:text="@string/topicSociety_main"
         android:textColor="@color/black"
         android:typeface="monospace"
         app:cornerRadius="20dp"
@@ -71,7 +70,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnTopicEcon"
-        app:strokeColor="#000000"
+        app:strokeColor="@color/black"
         app:strokeWidth="2.5dp" />
 
     <Button
@@ -81,7 +80,7 @@
         android:layout_margin="10dp"
         android:width="120pt"
         android:height="23pt"
-        android:text="Necessities"
+        android:text="@string/topicNecessities_main"
         android:textColor="@color/black"
         android:typeface="monospace"
         app:cornerRadius="20dp"
@@ -89,7 +88,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnTopicSociety"
-        app:strokeColor="#000000"
+        app:strokeColor="@color/black"
         app:strokeWidth="2.5dp" />
 
     <Button
@@ -99,7 +98,7 @@
         android:layout_margin="10dp"
         android:width="120pt"
         android:height="23pt"
-        android:text="Government"
+        android:text="@string/topicGovernment_main"
         android:textColor="@color/black"
         android:typeface="monospace"
         app:cornerRadius="20dp"
@@ -107,7 +106,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnTopicNecessities"
-        app:strokeColor="#000000"
+        app:strokeColor="@color/black"
         app:strokeWidth="2.5dp" />
 
     <Button
@@ -117,7 +116,7 @@
         android:layout_margin="10dp"
         android:width="120pt"
         android:height="23pt"
-        android:text="Energy"
+        android:text="@string/topicEnergy_main"
         android:textColor="@color/black"
         android:typeface="monospace"
         app:cornerRadius="20dp"
@@ -125,7 +124,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnTopicHealth"
-        app:strokeColor="#000000"
+        app:strokeColor="@color/black"
         app:strokeWidth="2.5dp" />
 
     <Button
@@ -135,7 +134,7 @@
         android:layout_margin="10dp"
         android:width="120pt"
         android:height="23pt"
-        android:text="Health"
+        android:text="@string/topicHealth_main"
         android:textColor="@color/black"
         android:typeface="monospace"
         app:cornerRadius="20dp"
@@ -143,8 +142,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnTopicEnergy"
-        app:strokeColor="#000000"
+        app:strokeColor="@color/black"
         app:strokeWidth="2.5dp" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
